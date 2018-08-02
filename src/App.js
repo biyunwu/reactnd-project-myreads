@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
 import './App.css'
+import HomePage from './HomePage';
 
 class BooksApp extends React.Component {
   state = {
@@ -74,9 +75,7 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
 
-                <BookShelf shelf='Current Reading' books={currentlyReading} onShelfChange={this.onShelfChange}/>
-                <BookShelf shelf='Want to Read' books={wantToRead} onShelfChange={this.onShelfChange}/>
-                <BookShelf shelf='Read' books={read} onShelfChange={this.onShelfChange}/>
+                <HomePage books={{currentlyReading, wantToRead, read}} onShelfChange={this.onShelfChange} />
 
               </div>
             </div>
