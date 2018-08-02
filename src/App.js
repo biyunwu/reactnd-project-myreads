@@ -18,12 +18,16 @@ class BooksApp extends React.Component {
     // read: []
     // bookShelf: {}
   }
+
+  getBooksFromServer = () => BooksAPI.getAll().then(books => this.setState({books}))
+
   componentDidMount(){
-    BooksAPI.getAll().then(books => this.setState({books}))
+    this.getBooksFromServer()
   }
+
   onShelfChange = (evt) =>{
     const targetBook = this.state.books.filter(book => book.id === evt.target.id)
-    BooksAPI.update(targetBook[0], evt.target.value).then(() => BooksAPI.getAll()).then(books => this.setState({books}))
+    BooksAPI.update(targetBook[0], evt.target.value).then(() => this.getBooksFromServer())
   }
 
   render() {
