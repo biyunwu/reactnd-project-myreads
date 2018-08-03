@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 export default class BookShelf extends Component {
-    checkOption = (optionName, book) => optionName === book.shelf? 'selcted' : ''
-
     render() {
         return (
             <div className="bookshelf">
@@ -15,12 +13,12 @@ export default class BookShelf extends Component {
                                     <div className="book-top">
                                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>
                                         <div className="book-shelf-changer">
-                                            <select id={book.id} onChange={this.props.onShelfChange}>
+                                            <select id={book.id} defaultValue={book.shelf} onChange={this.props.onShelfChange}>
                                                 <option value="move" disabled>Move to...</option>
-                                                <option value="currentlyReading" selected={this.checkOption("currentlyReading", book)}>Currently Reading</option>
-                                                <option value="wantToRead" selected={this.checkOption("wantToRead", book)}>Want to Read</option>
-                                                <option value="read" selected={this.checkOption("read", book)}>Read</option>
-                                                <option value="none" selected={this.checkOption("none", book)}>None</option> 
+                                                <option value="currentlyReading">Currently Reading</option>
+                                                <option value="wantToRead">Want to Read</option>
+                                                <option value="read">Read</option>
+                                                <option value="none">None</option>
                                             </select>
                                         </div>
                                     </div>
