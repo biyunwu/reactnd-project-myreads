@@ -9,16 +9,17 @@ export default class SearchPage extends Component{
             <div className="search-books-bar">
                 <Link className="close-search" to="/">Close</Link>
                 <div className="search-books-input-wrapper">
-                    <input type="text" placeholder="Search by title or author"/>
+                    <input type="text" placeholder="Search by title or author" onChange={this.props.onSearchChange}/>
+                </div>
+            </div>
+                <div className="search-books-results">
+                <ol className="books-grid">
                     <BookShelf
                         shelf='Search Result'
                         books={this.props.books}
                         onShelfChange={this.props.onShelfChange}
                     />
-                </div>
-            </div>
-                <div className="search-books-results">
-                <ol className="books-grid"></ol>
+                </ol>
                 </div>
             </div>
         )

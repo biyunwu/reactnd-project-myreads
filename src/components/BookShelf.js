@@ -7,7 +7,7 @@ export default class BookShelf extends Component {
                 <h2 className="bookshelf-title">{this.props.shelf}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.books.map(book => 
+                        {this.props.books && this.props.books.map(book => 
                             <li key={book.id}>
                                 <div className="book">
                                     <div className="book-top">

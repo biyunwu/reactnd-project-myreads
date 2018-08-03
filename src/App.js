@@ -16,9 +16,14 @@ export default class BooksApp extends React.Component {
         this.getBooksFromServer()
     }
 
-    onShelfChange = (evt) =>{
+    onShelfChange = (evt) => {
         const targetBook = this.state.books.filter(book => book.id === evt.target.id)
         BooksAPI.update(targetBook[0], evt.target.value).then(() => this.getBooksFromServer())
+    }
+
+    onSearchChange = (evt) => {
+        console.log(evt.target.value)
+        // BooksAPI.search(evt.target.value)
     }
 
     render() {
@@ -43,6 +48,7 @@ export default class BooksApp extends React.Component {
                     <SearchPage
                         // books={this.state.books}
                         // onShelfChange={this.onShelfChange}
+                        onSearchChange={this.onSearchChange}
                     />
                 )}/>
             </div>
