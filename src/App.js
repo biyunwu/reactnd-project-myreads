@@ -5,14 +5,8 @@ import './App.css'
 import HomePage from './components/HomePage';
 import SearchPage from './components/SearchPage';
 
-class BooksApp extends React.Component {
+export default class BooksApp extends React.Component {
     state = {
-        /**
-         * TODO: Instead of using this state variable to keep track of which page
-         * we're on, use the URL in the browser's address bar. This will ensure that
-         * users can use the browser's back and forward buttons to navigate between
-         * pages, as well as provide a good URL they can bookmark and share.
-         */
         books: [],
     }
 
@@ -28,33 +22,30 @@ class BooksApp extends React.Component {
     }
 
     render() {
-        const currentlyReading = [], wantToRead = [], read =[]
+        const currentlyReading = [], wantToRead = [], read =[], uncategorized = []
         this.state.books.forEach(book => {
-            const shelf = book.shelf;
-            if(shelf === 'currentlyReading'){
-                currentlyReading.push(book)
-            } else if (shelf === 'wantToRead'){
-                wantToRead.push(book);
-            } else if (shelf === 'read'){
-                read.push(book);
+            switch(book.shelf){
+                case 'currentlyReading': currentlyReading.push(book); break;
+                case 'wantToRead': wantToRead.push(book); break;
+                case 'read': read.push(book); break;
+                default: uncategorized.push(book);
             }
         })
-
         return (
             <div className="app">
                 <Route exact path='/' render={() => (
-                    <HomePage 
+                    <HomePage
                         books={{currentlyReading, wantToRead, read}} 
                         onShelfChange={this.onShelfChange} 
-                        showSearchPage={this.showSearchPage}
                     />
                 )}/>
                 <Route path='/create' render={() => (
-                    <SearchPage/>
+                    <SearchPage
+                        // books={this.state.books}
+                        // onShelfChange={this.onShelfChange}
+                    />
                 )}/>
             </div>
         )
     }
 }
-
-export default BooksApp

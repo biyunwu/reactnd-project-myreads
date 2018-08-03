@@ -12,9 +12,21 @@ export default class HomePage extends Component{
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <BookShelf shelf='Current Reading' books={currentlyReading} onShelfChange={onShelfChange}/>
-                    <BookShelf shelf='Want to Read' books={wantToRead} onShelfChange={onShelfChange}/>
-                    <BookShelf shelf='Read' books={read} onShelfChange={onShelfChange}/>
+                    <BookShelf
+                        shelf='Current Reading'
+                        books={currentlyReading}
+                        onShelfChange={onShelfChange}
+                    />
+                    <BookShelf
+                        shelf='Want to Read'
+                        books={wantToRead}
+                        onShelfChange={onShelfChange}
+                    />
+                    <BookShelf
+                        shelf='Read'
+                        books={read}
+                        onShelfChange={onShelfChange}
+                    />
                 </div>
                 <div className="open-search">
                     <Link to='/create'>Add a book</Link>
