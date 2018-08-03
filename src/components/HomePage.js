@@ -4,8 +4,15 @@ import { Link } from 'react-router-dom'
 
 export default class HomePage extends Component{
     render(){
-        const {currentlyReading, wantToRead, read} = this.props.books
-        const onShelfChange = this.props.onShelfChange
+        const currentlyReading = [], wantToRead = [], read =[], uncategorized = [], onShelfChange = this.props.onShelfChange
+        this.props.books.forEach(book => {
+            switch(book.shelf){
+                case 'currentlyReading': currentlyReading.push(book); break;
+                case 'wantToRead': wantToRead.push(book); break;
+                case 'read': read.push(book); break;
+                default: uncategorized.push(book);
+            }
+        })
         return (
             <div className="list-books">
                 <div className="list-books-title">
