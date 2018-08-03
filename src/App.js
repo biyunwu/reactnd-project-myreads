@@ -21,10 +21,10 @@ export default class BooksApp extends React.Component {
         BooksAPI.update(targetBook[0], evt.target.value).then(() => this.getBooksFromServer())
     }
 
-    onSearchChange = (evt) => {
-        console.log(evt.target.value)
-        // BooksAPI.search(evt.target.value)
-    }
+    // onSearchChange = (evt) => {
+    //     console.log(evt.target.value)
+    //     // BooksAPI.search(evt.target.value)
+    // }
 
     render() {
         const currentlyReading = [], wantToRead = [], read =[], uncategorized = []
@@ -47,8 +47,8 @@ export default class BooksApp extends React.Component {
                 <Route path='/create' render={() => (
                     <SearchPage
                         // books={this.state.books}
-                        // onShelfChange={this.onShelfChange}
-                        onSearchChange={this.onSearchChange}
+                        onShelfChange={this.onShelfChange}
+                        // onSearchChange={this.onSearchChange}
                     />
                 )}/>
             </div>
