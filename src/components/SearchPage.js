@@ -36,7 +36,7 @@ export default class SearchPage extends Component{
             const updatedSearchedBooks = this.state.searchedBooks.filter(book => book.id !== bookId)
             this.setState({searchedBooks: updatedSearchedBooks})
         }
-        // Call the App's main .onShelfChange function in order to update books info in the Home page.
+        // Call the parent component's main .onShelfChange function in order to update books info in the Home page.
         this.props.onShelfChange(evt)
     }
 
