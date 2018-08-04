@@ -11,14 +11,17 @@ export default class SearchPage extends Component{
 
     onSearchChange = (query) => {
         if(query && query.length !== 0){
+            // Fetch books form server
             BooksAPI.search(query).then(books => {
                 if(books.length > 0){
-                    const filteredBooks = books.map(book => (this.props.existBooks.filter((b) => b.id === book.id)))
+                    // Get rid of books that exist on user's shelves
+                    const existIds = this.props.existBooks.map(exb => exb.id)
+                    const filteredBooks = books.filter(book => !existIds.includes(book.id))
                     if(filteredBooks.length > 0){
                         this.setState({query: query, searchedBooks: filteredBooks})
                     } else {
                         this.setState({query: '', searchedBooks: []})
-                    } 
+                    }
                 }
             })
         } else {
@@ -26,8 +29,18 @@ export default class SearchPage extends Component{
         }
     }
 
+    onShelfChange = (evt) => {
+        // When a book in the Search page is added to user's shelf, it is going to be removed.
+        const [bookId, shelf] = [evt.target.id, evt.target.value]
+        if(shelf !== 'none'){
+            const updatedSearchedBooks = this.state.searchedBooks.filter(book => book.id !== bookId)
+            this.setState({searchedBooks: updatedSearchedBooks})
+        }
+        // Call the App's main .onShelfChange function in order to update books info in the Home page.
+        this.props.onShelfChange(evt)
+    }
+
     render(){
-        console.log(this.state.searchedBooks)
         return (
             <div className="search-books">
             <div className="search-books-bar">
@@ -40,7 +53,7 @@ export default class SearchPage extends Component{
                     <BookShelf
                         shelf='Search Result'
                         books={this.state.searchedBooks}
-                        onShelfChange={this.props.onShelfChange}
+                        onShelfChange={this.onShelfChange}
                     />
                 </div>
             </div>

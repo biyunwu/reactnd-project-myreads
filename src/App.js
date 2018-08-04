@@ -7,7 +7,7 @@ import SearchPage from './components/SearchPage';
 
 export default class BooksApp extends React.Component {
     state = {
-        books: [],
+        books: []
     }
 
     getBooksFromServer = () => BooksAPI.getAll().then(books => this.setState({books}))
@@ -17,9 +17,7 @@ export default class BooksApp extends React.Component {
     }
 
     onShelfChange = (evt) => {
-        // const targetBook = this.state.books.filter(book => book.id === evt.target.id)
-        // BooksAPI.update(targetBook[0], evt.target.value).then(() => this.getBooksFromServer())
-        BooksAPI.update({id: evt.target.id}, evt.target.value).then((existIdsObj) => {this.getBooksFromServer(), console.log(existIdsObj)})
+        BooksAPI.update({id: evt.target.id}, evt.target.value).then((existIdsObj) => this.getBooksFromServer())
     }
 
     render() {
@@ -35,7 +33,6 @@ export default class BooksApp extends React.Component {
                     <SearchPage
                         existBooks={this.state.books}
                         onShelfChange={this.onShelfChange}
-                        // onSearchChange={this.onSearchChange}
                     />
                 )}/>
             </div>
