@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BookShelf from './BookShelf'
+import NoSearchResultInfo from './NoSearchResultInfo'
 import * as BooksAPI from '../BooksAPI'
 import { Link } from "react-router-dom"
 
@@ -22,6 +23,8 @@ export default class SearchPage extends Component{
                     } else {
                         this.setState({query: '', searchedBooks: []})
                     }
+                } else {
+                    this.setState({query: '', searchedBooks: []})
                 }
             })
         } else {
@@ -54,6 +57,9 @@ export default class SearchPage extends Component{
                         shelf='Search Result'
                         books={this.state.searchedBooks}
                         onShelfChange={this.onShelfChange}
+                    />
+                    <NoSearchResultInfo
+                        bookNum={this.state.searchedBooks.length}
                     />
                 </div>
             </div>
