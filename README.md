@@ -1,4 +1,4 @@
-# MyReads Project
+# Reading List Project
 
 This is a personal Reading List project which is implemented by React.js.
 
@@ -43,8 +43,8 @@ App
 ├── HomePage
 │   └── BookShelf
 └── SearchPage
-    └── BookShelf
-        └── NoSearchResultInfo
+    ├── BookShelf
+    └── NoSearchResultInfo
 ```
 
 ## Backend Server
